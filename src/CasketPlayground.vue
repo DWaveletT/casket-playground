@@ -22,7 +22,9 @@
 <script setup lang="ts">
 
 import { CasketStar } from 'casket-star';
-import 'casket-star/style.css';
+
+import 'casket-star/themes/markdown/light.css';
+import 'casket-star/themes/casket/light.css';
 
 import { ref } from 'vue';
 
