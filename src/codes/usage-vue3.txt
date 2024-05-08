@@ -1,0 +1,18 @@
+<template>
+    <casket-star v-model="text" />
+
+    <casket-star v-model="text" lang="zh_CN" /> // for Simplified Chinese users
+</template>
+
+<script>
+
+import { CasketStar } from 'casket-star';
+
+import 'casket-star/themes/markdown/light.css'; // Default Markdown theme
+import 'casket-star/themes/casket/light.css';   // Default Casket theme
+
+import { onMounted, ref } from 'vue';
+
+const text = ref('');
+
+</script>
