@@ -137,37 +137,4 @@ function updateBV(){
     url.value = '#' + av.value.replace(/[^0-9]/gu, '');
 }
 
-export const ToolLinkOrVideo: Tool = {
-    name: '插入链接',
-    icon: defaultIcons['link'],
-    func: (codemirror: EditorView, casketstar: CasketView, dialog: HTMLDivElement) => {
-        function insertLink(type: string, url: string, alt: string){
-            const state = codemirror.state;
-            const trans = state.update(state.changeByRange( range => {
-                const text = (() => {
-                    if(type === 'link')
-                        return `[${alt}](${url})`;
-                    else 
-                    if(type === 'bilibili')
-                        return `::bilibili[${alt}]{${url}}`;
-                    else 
-                        return ``;
-                })();
-                return {
-                    changes: [
-                        { from: range.from, to: range.to},
-                        { from: range.from, insert: text},
-                    ],
-                    range: EditorSelection.range(range.from + text.length, range.from + text.length)
-                }
-            }));
-            
-            codemirror.update([trans]);
-            codemirror.focus();
-        }
-        
-        dialog(DLink, insertLink);
-    }
-};
-
 </script>

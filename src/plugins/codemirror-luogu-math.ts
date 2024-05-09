@@ -1,4 +1,4 @@
-import type { BlockParser, InlineParser, MarkdownConfig } from "@lezer/markdown";
+import type { MarkdownConfig } from "@lezer/markdown";
 
 import { Line } from "@lezer/markdown";
 

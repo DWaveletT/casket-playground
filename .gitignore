@@ -9,6 +9,7 @@ lerna-debug.log*
 
 .npmrc
 
+test
 node_modules
 .DS_Store
 dist
