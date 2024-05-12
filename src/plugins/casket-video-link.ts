@@ -6,7 +6,7 @@ import { createVNode, render } from "vue";
 import DLink from '~/components/ToolVideoLink.vue';
 
 export const ToolVideoLink: Tool = {
-    name: '插入链接',
+    name: 'video-link',
     icon: defaultIcons['link'],
     func: (codemirror: EditorView, casketstar: CasketView, container: HTMLDivElement) => {
         function insertLink(type: string, url: string, alt: string){

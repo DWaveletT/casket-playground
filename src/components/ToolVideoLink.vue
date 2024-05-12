@@ -1,5 +1,5 @@
 <template>
-    <m-dialog @close="emits('close')">
+    <m-dialog @close="doClose">
         <template #header>
             插入链接
         </template>
@@ -51,10 +51,10 @@
 
             <div class="submit-area">
                 <button class="cs-dialog-button cs-dialog-button-info" @click="emits('close')" >取消</button>
-                <button class="cs-dialog-button cs-dialog-button-info" @click="() => {
-                    emits('confirm', type, url, alt);
-                    emits('close');
-                }" >确认</button>
+                <button class="cs-dialog-button cs-dialog-button-info"  @click="() => {
+                    confirm(type, alt, url);
+                    doClose();
+            }" >确认</button>
             </div>
         </div>
     </m-dialog>
@@ -62,15 +62,22 @@
 
 <script setup lang="ts">
 
-import { ref } from 'vue';
+import { ref, render } from 'vue';
 
-import { MDialog, defaultIcons, type CasketView, type Tool } from 'casket-star';
-import type { EditorView } from '@codemirror/view';
-import { EditorSelection } from '@codemirror/state';
+import { MDialog } from 'casket-star';
+
+const props = defineProps<{
+    confirm: (type: string, alt: string, url: string) => void,
+    container: HTMLDivElement
+}>();
 
 const emits = defineEmits<{
     confirm: [string, string, string], close: []
 }>();
+
+function doClose(){
+    render(null, props.container);
+}
 
 const type = ref('link');
 const url = ref('');

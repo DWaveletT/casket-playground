@@ -46,7 +46,7 @@
 
 import { ref, render } from 'vue';
 
-import MDialog from 'casket-star';
+import { MDialog } from 'casket-star';
 
 const props = defineProps<{
     confirm: (type: string, title: string, code: string) => void,
