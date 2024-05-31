@@ -9,7 +9,7 @@
                         <path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z" fill="currentColor"/>
                     </svg>
                 </h2>
-                <p class="subtitle">使用 Codemirror 6 和 Vue3，基于 Remark & Rehype 生态构建的最新一代 Markdown 编译器。<br><i>version 0.0.10</i></p>
+                <p class="subtitle">使用 Codemirror 6 和 Vue3，基于 Remark & Rehype 生态构建的最新一代 Markdown 编译器。<br><i>version 0.0.11</i></p>
 
             <div style="margin-bottom: 2em" />
 
@@ -19,6 +19,7 @@
                 :toolbarl="toolbarl"
                 :toolbarr="toolbarr"
                 :key="updateTime"
+                :upload="upload"
                 />
         </div>
 
@@ -100,32 +101,33 @@
 
             <div class="feature-container">
                 <div class="feature">
-                    <h3 class="title">运行速度快<div class="decoration" /></h3>
+                    <h3 class="title">速度快<div class="decoration" /></h3>
 
-                    <p>星之器基于 Vue 进行构建，使用 Vite 进行打包。项目并未使用任何外部 UI 库，使得打包生成的文件轻巧快速。</p>
+                    <p>星之器基于 Vue 进行构建，使用 Vite 进行打包。项目并未使用任何外部 UI 库，使得打包生成的文件轻巧。</p>
 
                     <p>星之器使用 Codemirror 作为编辑器，Micromark 用于渲染，对较长的文章仍然表现出优秀的性能。</p>
+
+                    <p>当用户编辑长文章时，可以通过降低预览区的预览频率来防止预览卡顿；用户也可以直接关闭预览区专注于编辑区，由此获得更为流畅的编辑体验。</p>
                 </div>
 
                 <div class="feature">
-                    <h3 class="title">扩展性能强<div class="decoration" /></h3>
-                    
+                    <h3 class="title">易扩展<div class="decoration" /></h3>
+                    <p>考虑到不同应用场景的需求，扩展能力一直是我们十分关心的话题。几乎一切功能都是高度可定制的。</p>
                     <p>星之器基于 Codemirror、Remark 和 Rehype 生态，拥有庞大的社区资源。同时星之器保留了工具栏、编辑器、预览器的扩展接口，用户可以根据自己的喜好选择相应的插件。</p>
-
-                    <p>星之器将所有 css 样式打包整理，用户可以自行选择/定制编辑器的外观。</p>
+                    <p>此外，星之器将所有 css 样式打包成单独文件，用户可以自行对编辑器的外观进行定制，来适配站点风格。</p>
 
                 </div>
 
                 <div class="feature">
-                    <h3 class="title">编辑体验优<div class="decoration" /></h3>
-
-                    <p>星之器提供了若干编辑按钮用于快速编辑文档，同时支持快捷方式进行快速编辑。</p>
-                    <p>星之器提供了精确同步滚动功能用于快速预览，用户可以选择是否开启编辑/预览/全屏功能。</p>
-                    <p>星之器针对移动便携设备提供了支持。</p>
+                    <h3 class="title">体验好<div class="decoration" /></h3>
+                    <p>工具栏提供了快捷编辑按钮，提高编辑效率。</p>
+                    <p>基于 Codemirror，编辑区提供了大量功能。也可以通过加入新的 Codemirror 插件以实现更多编辑功能。</p>
+                    <p>基于 Remark 插件实现，星之器提供了精确的同步滚动功能用于快速对当前编辑部分的预览进行定位。不仅如此，用户还可以选择将编辑器全屏，又或是隐藏编辑区和预览区其中之一，来丰富编辑体验。</p>
+                    <!-- <p>星之器针对移动便携设备提供了支持。</p> -->
                 </div>
             </div>
 
-            <p>除此之外，星之器还具有完整的 Typescript 类型系统支持。</p>
+            <p>除此之外，星之器还具有完整的 Typescript 类型系统支持，以及原生的 Vue3 组件支持。</p>
 
             <h2 class="section-title">快速开始<div class="decoration" /></h2>
 
@@ -142,7 +144,7 @@
             <p>星之器主要由三部分组成：工具栏、编辑区、预览区。</p>
 
             <ul>
-                <li>工具栏每一个按键对应一个 <a href="#api-tool"><code>Tool</code></a> 类型的实例。每当用户点击按钮时，将会执行与之绑定的一个编辑函数。编辑函数可以获取到当前 Codemirror 的 <code>EditorView</code> 实例以及控制星之器显示的 <code>CasketView</code> 实例。此外，星之器在创建时会在 <code>body</code> 下方挂载一个 <code>div.casket</code> 节点，该节点也会作为参数被传入编辑函数当中。详情可参照 <a href="#api-tool"><code>Tool</code></a> 的接口描述。用户可以通过 <a href="#api-casketstar"><code>CasketStar.plugin</code></a> 的子属性 <code>toolbarl</code> 和 <code>toolbarr</code> 定制左侧/右侧的工具。</li>
+                <li>工具栏每一个按键对应一个 <a href="#api-tool"><code>Tool</code></a> 类型的实例。当用户点击工具按钮时，与之绑定的函数会被执行。该函数以当前 Codemirror 的 <code>EditorView</code> 实例以及控制星之器显示的 <code>CasketView</code> 实例作为参数，可对编辑内容以及编辑器的状态进行控制。此外，星之器在挂载时还会在 <code>body</code> 下方新建一个 <code>div.casket</code> 节点，该节点也会作为参数被传入工具函数当中，用户可利用它实现蒙版。详情可参照 <a href="#api-tool"><code>Tool</code></a> 的接口描述。用户可以通过 <a href="#api-casketstar"><code>CasketStar.plugin</code></a> 的子属性 <code>toolbarl</code> 和 <code>toolbarr</code> 定制左侧/右侧的工具。</li>
                 <li>编辑区由 Codemirror 6 实现，用户可以通过 <a href="#api-casketstar"><code>CasketStar.plugin</code></a> 的子属性 <code>codemirror</code> 为编辑区添加扩展。值得注意的是，为了方便用户对 Codemirror 的 markdown 扩展进行配置，markdown 扩展本身被作为可选项由 <a href="api-get-default-plugins"><code>getDefaultPlugins</code></a> 作为缺省原提供。</li>
                 <li>预览区由 Remark 和 Rehype 实现，用户可以通过 <a href="#api-casketstar"><code>CasketStar.plugin</code></a> 的子属性 <code>remark</code>、<code>rehype</code> 和 <code>remarkRehypeOptions</code> 为预览区添加扩展。具体工作细节可以参考<a href="detail">实现细节</a>。</li>
             </ul>
@@ -161,11 +163,11 @@
 
             <h2 id="theme" class="section-title">外观定制<div class="decoration" /></h2>
 
-            <p>星之器的外观由三个部分组成，分别是编辑器（Codemirror）的外观、预览器（Markdown）的外观和星之器本身（例如工具条和工具模态组件）的外观。</p>
+            <p>星之器的外观由三个部分组成，分别是编辑区（Codemirror）的外观、预览区（Markdown）的外观和编辑器（例如工具条和工具模态组件）的外观。</p>
 
             <ul>
                 <li>Codemirror 的外观可以通过向 <code>plugin</code> 的 <code>codemirror</code> 属性插入插件进行修改；</li>
-                <li>Markdown 的外观和星之器的外观可以通过改变导入的 css 文件来实现。</li>
+                <li>Markdown 的外观和编辑器的外观可以通过修改导入的 css 文件来实现。</li>
             </ul>
 
             <highlightjs language="js" :code="codes['theme-default']" />
@@ -175,6 +177,8 @@
             <p>Codemirror 的外观通过使用 Codemirror 插件来实现。</p>
             
             <i>TODO</i>
+
+            <m-editor></m-editor>
 
 
             <h2 id="detail" class="section-title">技术细节<div class="decoration" /></h2>
@@ -628,26 +632,45 @@
 import { codes } from './codes';
 
 
-import { CasketStar, ToolLink, ToolTable, getDefaultToolbarL, getDefaultToolbarR, markdown, markdownLanguage, type Plugins } from 'casket-star';
+import {
+    CasketStar,
+    ToolLink,
+    ToolTable,
+    getDefaultToolbarL,
+    getDefaultToolbarR, 
+    markdown,
+    markdownLanguage,
+    type Plugins,
+    type Uploader
+} from 'casket-star';
 
 import 'casket-star/themes/markdown/light.css';
 import 'casket-star/themes/casket/light.css';
 
 import { computed, ref } from 'vue';
 
-import remarkMath from './plugins/remark-math-luogu';
-import rehypeKatex from 'rehype-katex';
+import {
+    remarkMath,
+    remarkNoHtml,
+    remarkVideo,
+    remarkCallouts,
+
+    ToolBlock,
+    ToolMergeTable,
+    ToolVideoLink,
+    LuoguMath,
+    RemoveHTML
+} from './plugins';
+
 import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
-import remarkExtendedTable, { extendedTableHandlers } from 'remark-extended-table';
 import remarkDirective from 'remark-directive';
-import { LuoguMath } from './plugins/codemirror-luogu-math';
+
+import rehypeHighlight from 'rehype-highlight';
+import rehypeKatex from 'rehype-katex';
+
+import remarkExtendedTable, { extendedTableHandlers } from 'remark-extended-table';
+
 import type { MarkdownExtension } from '@lezer/markdown';
-import remarkVideo from './plugins/remark-video';
-import remarkCallouts from './plugins/remark-callouts';
-import { ToolVideoLink } from './plugins/casket-video-link';
-import { ToolMergeTable } from './plugins/casket-merge-table';
-import { ToolBlock } from './plugins/casket-block';
 
 const value = ref('');
 
@@ -674,9 +697,25 @@ function config(name: string){
     updateTime.value = new Date().getTime();
 }
 
-const plugins = computed(() => {
-    console.log('compute');
+const upload: Uploader = (data: FileList) => {
+    const info: {
+        alt: string,
+        url: string
+    }[] = [];
 
+    for(let i = 0;i < data.length;i ++){
+        console.log(`upload [${data[i].name}]`);
+
+        info.push({
+            alt: data[i].name,
+            url: 'fakeURL'
+        });
+    }
+
+    return info;
+}
+
+const plugins = computed(() => {
     const plugins: Plugins = {};
 
     plugins.rehype = [];
@@ -692,9 +731,11 @@ const plugins = computed(() => {
     markdownConfig.base = markdownLanguage;
 
     if(listConfig.value.includes('html')){
-        plugins.remarkRehypeOptions!.allowDangerousHtml = true;
+        plugins.remarkRehypeOptions.allowDangerousHtml = true;
     } else {
-        (markdownConfig.extensions as MarkdownExtension[]).push({ remove: ['HTMLBlock', 'HTMLTag'] });
+        plugins.remark.push(remarkNoHtml);
+
+        (markdownConfig.extensions as MarkdownExtension[]).push(RemoveHTML);
         markdownConfig.completeHTMLTags = false;
     }
     if(listConfig.value.includes('math')){
@@ -709,8 +750,8 @@ const plugins = computed(() => {
     }
     if(listConfig.value.includes('table')){
         plugins.remark.push(remarkExtendedTable);
-        plugins.remarkRehypeOptions!.handlers = {
-            ...plugins.remarkRehypeOptions!.handlers,
+        plugins.remarkRehypeOptions.handlers = {
+            ...plugins.remarkRehypeOptions.handlers,
             ...extendedTableHandlers
         }
     }
@@ -792,11 +833,12 @@ const toolbarl = computed(() => {
         }
     }
     return toolbar;
-})
+});
+
 const toolbarr = computed(() => {
     const toolbar = getDefaultToolbarR();
     return toolbar;
-})
+});
 
 </script>
 
@@ -1202,6 +1244,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .feature-container {
     display: grid;
+
     grid-template-columns: 1fr 1fr 1fr;
 
     gap: 2em;
@@ -1229,6 +1272,12 @@ h1, h2, h3, h4, h5, h6 {
                 background-color: $casket-color;
             }
         }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .feature-container {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -1277,15 +1326,15 @@ div.function {
     color: $text-p-color;
     > .item {
         padding: 1em;
-        display: flex;
+
+        display: grid;
+        grid-template-columns: 5em 1fr;
+        
         > .label {
-            width: 5em;
-            flex-shrink: 0;
             font-weight: bold;
         }
 
         > .description {
-            flex-grow: 1;
 
             :first-child {
                 margin-top: 0;
@@ -1296,5 +1345,9 @@ div.function {
             border-bottom: 1px solid $casket-color;
         }
     }
+}
+
+:global(.hljs){
+    overflow-x: scroll;
 }
 </style>

@@ -128,3 +128,5 @@ export const LuoguMath: MarkdownConfig = {
         }
     ]
 }
+
+export default LuoguMath;

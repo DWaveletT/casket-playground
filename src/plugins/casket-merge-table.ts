@@ -5,7 +5,7 @@ import { createVNode, render } from "vue";
 
 import DTable, { type Node } from '~/components/ToolMergeTable.vue';
 
-export const ToolMergeTable: Tool = {
+const ToolMergeTable: Tool = {
     name: 'merge-table',
     icon: defaultIcons['table'],
     func: (codemirror: EditorView, casketstar: CasketView, container: HTMLDivElement) => {
@@ -73,3 +73,5 @@ export const ToolMergeTable: Tool = {
         render(dialog, container);
     }
 };
+
+export default ToolMergeTable;

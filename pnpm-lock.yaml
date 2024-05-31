@@ -45,7 +45,7 @@ importers:
         specifier: ^0.5.1
         version: 0.5.1
       casket-star:
-        specifier: link:..\casket
+        specifier: link:../casket
         version: link:../casket
       hast-util-to-string:
         specifier: ^3.0.0

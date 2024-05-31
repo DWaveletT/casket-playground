@@ -5,7 +5,7 @@ import { createVNode, render } from "vue";
 
 import DBlock from '~/components/ToolBlock.vue';
 
-export const ToolBlock: Tool = {
+const ToolBlock: Tool = {
     name: 'block',
     icon: defaultIcons['block'],
     func: (codemirror: EditorView, casketstar: CasketView, container: HTMLDivElement) => {
@@ -37,3 +37,5 @@ export const ToolBlock: Tool = {
         render(dialog, container);
     }
 };
+
+export default ToolBlock;

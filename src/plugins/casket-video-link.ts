@@ -5,7 +5,7 @@ import { createVNode, render } from "vue";
 
 import DLink from '~/components/ToolVideoLink.vue';
 
-export const ToolVideoLink: Tool = {
+const ToolVideoLink: Tool = {
     name: 'video-link',
     icon: defaultIcons['link'],
     func: (codemirror: EditorView, casketstar: CasketView, container: HTMLDivElement) => {
@@ -44,3 +44,5 @@ export const ToolVideoLink: Tool = {
         render(dialog, container);
     }
 };
+
+export default ToolVideoLink;
