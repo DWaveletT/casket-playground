@@ -9,18 +9,22 @@
                         <path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z" fill="currentColor"/>
                     </svg>
                 </h2>
-                <p class="subtitle">使用 Codemirror 6 和 Vue3，基于 Remark & Rehype 生态构建的最新一代 Markdown 编译器。<br><i>version 0.0.14</i></p>
+                <p class="subtitle">使用 Codemirror 6 和 Vue3，基于 Remark & Rehype 生态构建的最新一代 Markdown 编译器。<br><i>version 0.0.16</i></p>
 
             <div style="margin-bottom: 2em" />
 
             <casket-star
                 v-model="value"
                 :plugins="plugins"
-                :toolbarl="toolbarl"
-                :toolbarr="toolbarr"
+
                 :key="updateTime"
                 :upload="upload"
-                :i18n="lang === 'zh_CN' ? zhCN : enUS"
+
+                :lang="lang === 'zh_CN' ? zhCN : enUS"
+
+                :hideHeader="hideHeader"
+                :hideFooter="hideFooter"
+                :disabled="editDisable"
                 />
         </div>
 
@@ -56,6 +60,25 @@
                             :class="{ selected: listConfig.includes(key) }"
                             @click="config(key)"
                         >{{ name }}</div>
+                    </div>
+                </div>
+
+                <h2 class="title">其他设置</h2>
+
+                <div class="options">
+                    <div class="option-group">
+                        <div class="item"
+                            :class="{ selected: hideHeader === true }"
+                            @click="hideHeader = !hideHeader"
+                        >隐藏顶部</div>
+                        <div class="item"
+                            :class="{ selected: hideFooter === true }"
+                            @click="hideFooter = !hideFooter"
+                        >隐藏底部</div>
+                        <div class="item"
+                            :class="{ selected: editDisable === true }"
+                            @click="editDisable = !editDisable"
+                        >禁用编辑</div>
                     </div>
                 </div>
 
@@ -144,11 +167,11 @@
 
             <p>星之器主要由三部分组成：工具栏、编辑区、预览区。</p>
 
-            <ul>
-                <li>工具栏每一个按键对应一个 <a href="#api-tool"><code>Tool</code></a> 类型的实例。当用户点击工具按钮时，与之绑定的函数会被执行。该函数以当前 Codemirror 的 <code>EditorView</code> 实例以及控制星之器显示的 <code>CasketView</code> 实例作为参数，可对编辑内容以及编辑器的状态进行控制。此外，星之器在挂载时还会在 <code>body</code> 下方新建一个 <code>div.casket</code> 节点，该节点也会作为参数被传入工具函数当中，用户可利用它实现蒙版。详情可参照 <a href="#api-tool"><code>Tool</code></a> 的接口描述。用户可以通过 <a href="#api-casketstar"><code>CasketStar.plugin</code></a> 的子属性 <code>toolbarl</code> 和 <code>toolbarr</code> 定制左侧/右侧的工具。</li>
-                <li>编辑区由 Codemirror 6 实现，用户可以通过 <a href="#api-casketstar"><code>CasketStar.plugin</code></a> 的子属性 <code>codemirror</code> 为编辑区添加扩展。值得注意的是，为了方便用户对 Codemirror 的 markdown 扩展进行配置，markdown 扩展本身被作为可选项由 <a href="api-get-default-plugins"><code>getDefaultPlugins</code></a> 作为缺省原提供。</li>
-                <li>预览区由 Remark 和 Rehype 实现，用户可以通过 <a href="#api-casketstar"><code>CasketStar.plugin</code></a> 的子属性 <code>remark</code>、<code>rehype</code> 和 <code>remarkRehypeOptions</code> 为预览区添加扩展。具体工作细节可以参考<a href="detail">实现细节</a>。</li>
-            </ul>
+            <ol>
+                <li>工具栏上每个按钮绑定一个函数。当用户单击按钮，对应函数会被执行，并对编辑器产生效果。编辑区的实例 <code>CodemirrorView</code>、编辑器的实例 <code>CasketView</code>，以及用于放置弹出窗口的容器节点会被作为参数传入该函数，用户可以借此实现工具按钮对编辑器的控制。</li>
+                <li>编辑区使用 Codemirror 实现，支持传入 Codemirror 插件。</li>
+                <li>预览区使用 Remark 和 Rehype 实现，支持传入 Remark 生态的插件以及 Rehype 生态的插件。</li>
+            </ol>
 
             <i>TODO</i>
 
@@ -173,7 +196,7 @@
 
             <highlightjs language="js" :code="codes['theme-default']" />
 
-            <h3 id="theme-codemirror">编辑器</h3>
+            <h3 id="theme-codemirror">编辑区</h3>
 
             <p>Codemirror 的外观通过使用 Codemirror 插件来实现。</p>
             
@@ -638,14 +661,15 @@ import {
     getDefaultToolbarR, 
     markdown,
     markdownLanguage,
-    zhCN,
-    enUS,
     type Plugins,
     type Uploader
 } from 'casket-star';
 
 import 'casket-star/themes/markdown/light.css';
 import 'casket-star/themes/casket/light.css';
+
+import zhCN from 'casket-star/lang/zh_CN.json';
+import enUS from 'casket-star/lang/en_US.json';
 
 import { computed, ref, watch } from 'vue';
 
@@ -671,7 +695,9 @@ import rehypeKatex from 'rehype-katex';
 import remarkExtendedTable, { extendedTableHandlers } from 'remark-extended-table';
 
 import type { MarkdownExtension } from '@lezer/markdown';
+import type { Options } from 'remark-rehype';
 import type { Plugin } from 'unified';
+import type { Extension } from '@codemirror/state';
 
 const value = ref('');
 
@@ -693,7 +719,7 @@ const lang = ref('zh_CN');
 
 watch(lang, () => {
     updateTime.value = new Date().getTime();
-})
+});
 
 function config(name: string){
     if(listConfig.value.includes(name)){
@@ -722,15 +748,15 @@ const upload: Uploader = (data: FileList) => {
     return info;
 }
 
-const plugins = computed(() => {
-    const plugins: Plugins = {};
+const plugins = computed<Plugins>(() => {
 
-    plugins.rehype = [];
-    plugins.remark = [];
-    plugins.codemirror = [];
-    plugins.remarkRehypeOptions = {};
+    const remarks = [];
+    const rehypes = [];
+    const codemirrors = [];
 
-    plugins.remark!.push(remarkGfm);
+    const remarkRehypeOptions: Options = {};
+
+    remarks.push(remarkGfm);
 
     const markdownConfig: Record<string, unknown> = {};
     markdownConfig.extensions = [];
@@ -738,59 +764,55 @@ const plugins = computed(() => {
     markdownConfig.base = markdownLanguage;
 
     if(listConfig.value.includes('html')){
-        plugins.remarkRehypeOptions.allowDangerousHtml = true;
+        remarkRehypeOptions.allowDangerousHtml = true;
     } else {
-        plugins.remark.push(remarkNoHtml);
+        remarks.push(remarkNoHtml);
 
         (markdownConfig.extensions as MarkdownExtension[]).push(RemoveHTML);
         markdownConfig.completeHTMLTags = false;
     }
     if(listConfig.value.includes('math')){
         const macros = {};
-        plugins.remark.push(remarkMath);
-        plugins.rehype.push([rehypeKatex, { macros: macros }]);
+        remarks.push(remarkMath);
+        rehypes.push([rehypeKatex, { macros: macros }]);
 
         (markdownConfig.extensions as MarkdownExtension[]).push(LuoguMath);
     }
     if(listConfig.value.includes('code')){
-        plugins.rehype.push([rehypeHighlight, { detect: true }]);
+        rehypes.push([rehypeHighlight, { detect: true }]);
     }
     if(listConfig.value.includes('table')){
-        plugins.remark.push(remarkExtendedTable);
-        plugins.remarkRehypeOptions.handlers = {
-            ...plugins.remarkRehypeOptions.handlers,
+        remarks.push(remarkExtendedTable);
+        remarkRehypeOptions.handlers = {
+            ...(remarkRehypeOptions.handlers as object),
             ...extendedTableHandlers
         }
     }
 
     if(listConfig.value.includes('video') || listConfig.value.includes('block')){
-        plugins.remark.push(remarkDirective);
+        remarks.push(remarkDirective);
 
         if(listConfig.value.includes('video')){
-            plugins.remark.push(remarkVideo);
+            remarks.push(remarkVideo);
         }
         if(listConfig.value.includes('block')){
-            plugins.remark.push(remarkCallouts);
+            remarks.push(remarkCallouts);
         }
     }
 
-    plugins.codemirror.push(markdown(markdownConfig));
+    codemirrors.push(markdown(markdownConfig));
 
-    return plugins;
-});
-
-const toolbarl = computed(() => {
-    const toolbar = getDefaultToolbarL();
+    const toolbarL = getDefaultToolbarL();
 
     if(listConfig.value.includes('table')){
-        for(const toolgroup of toolbar){
+        for(const toolgroup of toolbarL){
             const i = toolgroup.findIndex((t) => t.name === 'table');
             if(i !== -1){
                 toolgroup[i] = ToolMergeTable;
             }
         }
     } else {
-        for(const toolgroup of toolbar){
+        for(const toolgroup of toolbarL){
             const i = toolgroup.findIndex((t) => t.name === 'merge-table');
             if(i !== -1){
                 toolgroup[i] = ToolTable;
@@ -799,14 +821,14 @@ const toolbarl = computed(() => {
     }
 
     if(listConfig.value.includes('video')){
-        for(const toolgroup of toolbar){
+        for(const toolgroup of toolbarL){
             const i = toolgroup.findIndex((t) => t.name === 'link');
             if(i !== -1){
                 toolgroup[i] = ToolVideoLink;
             }
         }
     } else {
-        for(const toolgroup of toolbar){
+        for(const toolgroup of toolbarL){
             const i = toolgroup.findIndex((t) => t.name === 'video-link');
             if(i !== -1){
                 toolgroup[i] = ToolLink;
@@ -816,14 +838,14 @@ const toolbarl = computed(() => {
 
     if(listConfig.value.includes('block')){
         let exist = false;
-        for(let toolgroup of toolbar){
+        for(let toolgroup of toolbarL){
             const i = toolgroup.findIndex((t) => t.name === 'block');
             if(i !== -1){
                 exist = true;
             }
         }
         if(exist === false){
-            for(let toolgroup of toolbar){
+            for(let toolgroup of toolbarL){
                 const i = toolgroup.findIndex((t) => t.name === 'link');
                 if(i !== -1){
                     toolgroup.push(ToolBlock);
@@ -832,20 +854,30 @@ const toolbarl = computed(() => {
 
         }
     } else {
-        for(let toolgroup of toolbar){
+        for(let toolgroup of toolbarL){
             const i = toolgroup.findIndex((t) => t.name === 'block');
             if(i !== -1){
                 toolgroup = toolgroup.splice(i, 1);
             }
         }
     }
-    return toolbar;
+
+    const toolbarR = getDefaultToolbarR();
+
+    return {
+        remark: remarks as unknown as Plugin,
+        rehype: rehypes as unknown as Plugin,
+        remarkRehypeOptions,
+        codemirror: codemirrors as unknown as Extension,
+
+        toolbarL,
+        toolbarR,
+    };
 });
 
-const toolbarr = computed(() => {
-    const toolbar = getDefaultToolbarR();
-    return toolbar;
-});
+const hideHeader = ref(false);
+const hideFooter = ref(false);
+const editDisable = ref(false);
 
 </script>
 
@@ -985,7 +1017,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     > .config {
-        padding-top: 3em;
 
         position: fixed;
         width: min(80%, 360px);
@@ -1006,7 +1037,7 @@ h1, h2, h3, h4, h5, h6 {
 
             color: $text-h-color;
 
-            margin: 1em 0;
+            margin: 0.7em 0;
         }
 
         > .lang {
@@ -1031,6 +1062,7 @@ h1, h2, h3, h4, h5, h6 {
                 border: 2px solid $casket-color;
                 opacity: 0;
                 pointer-events: none;
+                z-index: 2;
 
                 transition: 0.2s ease-in-out opacity;
 
@@ -1038,6 +1070,7 @@ h1, h2, h3, h4, h5, h6 {
                     width: 8em;
                     padding: 0.5em 1em;
                     background-color: white;
+
 
                     cursor: pointer;
 
@@ -1068,7 +1101,7 @@ h1, h2, h3, h4, h5, h6 {
 
                 cursor: pointer;
 
-                padding: 0.5em 1em;
+                padding: 0.4em 1em;
                 background-color: white;
                 font-weight: lighter;
                 box-shadow: 4px 4px 2px $casket-sd-color;
@@ -1086,11 +1119,9 @@ h1, h2, h3, h4, h5, h6 {
             }
 
             .option-group {
-                
-
                 &:not(:last-child){
-                    padding-bottom: 1em;
-                    margin-bottom: 1em;
+                    padding-bottom: 0.8em;
+                    margin-bottom: 0.5em;
                     border-bottom: 2px dashed $casket-color;
                 }
             }
