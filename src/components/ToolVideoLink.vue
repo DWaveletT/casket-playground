@@ -28,7 +28,7 @@
                     <input type="text" v-model="alt" class="cs-dialog-content" />
                 </div>
             </template>
-            <template v-else="type === 'bilibili'">
+            <template v-else-if="type === 'bilibili'">
                 <div class="cs-dialog-item">
                     <div class="cs-dialog-item-label">
                         AV 号
@@ -64,7 +64,7 @@
 
 import { ref, render } from 'vue';
 
-import { MDialog } from 'casket-star';
+import { MDialog } from '@lfe/casket-star';
 
 const props = defineProps<{
     confirm: (type: string, alt: string, url: string) => void,
@@ -98,7 +98,7 @@ const bilibiliA2B = (av: string) => {
 
     if (isNaN(num) || num <= 0) {
         return '不正确的 av 号';
-    };
+    }
 
     num = (num ^ xor) + add;
     let result = [...'bv1  4 1 7  '];
@@ -106,7 +106,7 @@ const bilibiliA2B = (av: string) => {
     while (i < 6) {
         result[s[i]] = table[Math.floor(num / 58 ** i) % 58];
         i += 1;
-    };
+    }
     return result.join('');
 };
 
@@ -120,17 +120,17 @@ const bilibiliB2A = (bv: string) => {
         str = `BV1${bv}`;
     } else {
         return '不正确的 bv 号';
-    };
+    }
     if (!str.match(/[Bb][Vv][fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF]{10}/gu)) {
         return '不正确的 bv 号';
-    };
+    }
 
     let result = 0;
     let i = 0;
     while (i < 6) {
         result += table.indexOf(str[s[i]]) * 58 ** i;
         i += 1;
-    };
+    }
     return `av${result - add ^ xor}`;
 };
 

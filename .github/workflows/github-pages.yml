@@ -1,4 +1,4 @@
-name: 3rd-eye Deploy
+name: Public on Github page
  
 on:
   push:
@@ -14,21 +14,37 @@ jobs:
       packages: read
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
+
     steps:
+      - uses: actions/checkout@v4
 
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 'latest'
-      
-      - name: Download packages
-        run: npm install --production --always-auth
+          node-version: 20.x
 
-      - name: Build
-        run: npm run build-only
+      - name: Create .yarnrc.yml
+        run: |
+            echo "nodeLinker: node-modules" >> ~/.yarnrc.yml
+            echo "" >> ~/.yarnrc.yml
+            echo "npmScopes:" >> ~/.yarnrc.yml
+            echo "  fortawesome:" >> ~/.yarnrc.yml
+            echo "    npmAlwaysAuth: true" >> ~/.yarnrc.yml
+            echo "    npmRegistryServer: 'https://npm.fontawesome.com/'" >> ~/.yarnrc.yml
+            echo "  lfe:" >> ~/.yarnrc.yml
+            echo "    npmAlwaysAuth: true" >> ~/.yarnrc.yml
+            echo "    npmAuthToken: ${{ secrets.LFE_PACKAGE_TOKEN }}" >> ~/.yarnrc.yml
+            echo "    npmRegistryServer: 'https://git.saikou.luogu.org.cn/api/v4/packages/npm/'" >> ~/.yarnrc.yml
+
+      - name: Run install
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: install
+
+      - name: Build production bundle
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4

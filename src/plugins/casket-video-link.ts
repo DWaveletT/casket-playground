@@ -1,6 +1,6 @@
 import { EditorSelection } from "@codemirror/state";
 import type { EditorView } from "@codemirror/view";
-import { defaultIcons, type CasketView, type Tool } from "casket-star";
+import { defaultIcons, type CasketView, type Tool } from "@lfe/casket-star";
 import { createVNode, render } from "vue";
 
 import DLink from '~/components/ToolVideoLink.vue';

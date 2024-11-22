@@ -1,5 +1,5 @@
 <template>
-    <m-dialog-extra @close="doClose">
+    <m-dialog @close="doClose" :extra="true">
         <template #header>
             插入表格
         </template>
@@ -41,9 +41,9 @@
         <template #view>
             <table class="cs-dialog-table-editor">
                 <tbody>
-                    <tr v-for="[x, line] of Object.entries(table)">
+                    <tr v-for="[x, line] of Object.entries(table)" :key="x">
                         <template
-                            v-for="[y, value] of Object.entries(line)"
+                            v-for="[y, value] of Object.entries(line)" :key="y"
                         >
                             <td
                                 v-if="!value.merged"
@@ -63,14 +63,14 @@
                 </tbody>
             </table>
         </template>
-    </m-dialog-extra>
+    </m-dialog>
 </template>
 
 <script setup lang="ts">
 
 import { ref, watch, render } from 'vue';
 
-import { MDialogExtra } from 'casket-star';
+import { MDialog } from '@lfe/casket-star';
 
 const props = defineProps<{
     confirm: (row: number, col: number, table: Node[][]) => void,
