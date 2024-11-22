@@ -46,6 +46,9 @@
     "vue": "^3.4.27",
     "vue-tsc": "^2.0.19"
   },
+  "peerDependencies": {
+    "remark-parse": "*"
+  },
   "resolutions": {
     "@codemirror/view": "6.27.0"
   },

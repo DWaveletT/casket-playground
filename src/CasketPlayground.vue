@@ -84,7 +84,7 @@ import {
 import '@lfe/casket-star/themes/markdown/light.css';
 import '@lfe/casket-star/themes/luogu/light.css';
 
-import { computed, onBeforeMount, ref, watch } from 'vue';
+import { onBeforeMount, ref, watch } from 'vue';
 
 import {
     remarkMath,
