@@ -84,7 +84,7 @@ import {
 import '@lfe/casket-star/themes/markdown/light.css';
 import '@lfe/casket-star/themes/luogu/light.css';
 
-import { computed, ref, watch } from 'vue';
+import { computed, onBeforeMount, ref, watch } from 'vue';
 
 import {
     remarkMath,
@@ -171,7 +171,7 @@ const plugins: Plugins = {
     codemirror: codemirrors,
 };
 
-watch(configPlugin.value, () => {
+function initPlugins(){
     const config = configPlugin.value;
 
     while(remarks.length) remarks.pop();
@@ -214,7 +214,7 @@ watch(configPlugin.value, () => {
             remarks.push(remarkCallouts);
     }
     codemirrors.push(markdown(markdownConfig));
-    toolbarL = getDefaultToolbarL();
+
     if(config.table.value){
         for(const toolgroup of toolbarL){
             const i = toolgroup.findIndex((t) => t.name === 'table');
@@ -262,9 +262,15 @@ watch(configPlugin.value, () => {
                 toolgroup = toolgroup.splice(i, 1);
         }
     }
-    toolbarR = getDefaultToolbarR();
-    
+}
+
+watch(configPlugin.value, () => {
+    initPlugins();
     updateTime.value = new Date().getTime();
+});
+
+onBeforeMount(() => {
+    initPlugins();
 });
 
 </script>
