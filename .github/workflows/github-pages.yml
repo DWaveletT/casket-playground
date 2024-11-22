@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 20.x
 
-      - name: Create .yarnrc.yml
+      - name: Prepare yarn
         run: |
             echo "nodeLinker: node-modules" >> ~/.yarnrc.yml
             echo "" >> ~/.yarnrc.yml
@@ -35,6 +35,7 @@ jobs:
             echo "    npmAlwaysAuth: true" >> ~/.yarnrc.yml
             echo "    npmAuthToken: ${{ secrets.LFE_PACKAGE_TOKEN }}" >> ~/.yarnrc.yml
             echo "    npmRegistryServer: 'https://git.saikou.luogu.org.cn/api/v4/packages/npm/'" >> ~/.yarnrc.yml
+            corepack enable
 
       - name: Run install
         uses: borales/actions-yarn@v5
