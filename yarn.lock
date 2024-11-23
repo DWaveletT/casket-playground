@@ -1511,6 +1511,7 @@ __metadata:
     remark-directive: "npm:^3.0.0"
     remark-extended-table: "npm:^2.0.2"
     remark-gfm: "npm:^4.0.0"
+    remark-parse: "npm:^11.0.0"
     remark-rehype: "npm:^11.1.0"
     sass: "npm:^1.77.2"
     typescript: "npm:~5.4.5"
