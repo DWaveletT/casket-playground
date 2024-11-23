@@ -8,8 +8,14 @@
             <i>version: @lfe/0.0.33</i>
         </p>
 
-        <div class="config-button" @click="showConfig = true">
+        <div class="fixed-button config" @click="showConfig = true">
             <img src="./assets/fa-gear.svg" width="48px" height="48px" />
+        </div>
+
+        <div class="fixed-button github">
+            <a href="https://github.com/DWaveletT/casket-star">
+                <img src="./assets/fa-github.svg" width="48px" height="48px" />
+            </a>
         </div>
     </header>
     <div class="demo-container">
@@ -325,18 +331,24 @@ code {
     margin: 0 auto;
 }
 
-.config-button {
+.fixed-button {
     width: 24x;
     height: 24px;
     position: absolute;
-    right: 1.5em;
-    top: 1.5em;
     color: black;
     opacity: 0.4;
     cursor: pointer;
     transition: 0.2s ease-in-out opacity;
     &:hover {
         opacity: 1;
+    }
+    &.config {
+        right: 1.5em;
+        top: 1.5em;
+    }
+    &.github {
+        right: 1.5em;
+        top: 6em;
     }
 }
 
@@ -411,26 +423,5 @@ code {
     .rounded {
         border-radius: 1em;
     }
-}
-
-.github-container {
-    display: flex;
-    height: 100%;
-
-    align-items: center;
-}
-
-.github {
-    width: 24px;
-    height: 24px;
-    opacity: 0.6;
-    transition: 0.2s ease-in-out opacity;
-    &:hover {
-        opacity: 1.0;
-    }
-}
-
-:global(.hljs){
-    overflow-x: scroll;
 }
 </style>
