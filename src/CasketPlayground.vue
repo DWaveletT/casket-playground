@@ -5,7 +5,7 @@
         </h2>
         <p class="subtitle">
             使用 Codemirror 6 和 Vue3，基于 Remark & Rehype 生态构建的最新一代 Markdown 编译器。<br>
-            <i>version: @lfe/0.0.34</i>
+            <i>version: @lfe/0.0.35</i>
         </p>
 
         <div class="fixed-button config" @click="showConfig = true">

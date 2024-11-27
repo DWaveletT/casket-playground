@@ -510,9 +510,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lfe/casket-star@npm:^0.0.34":
-  version: 0.0.34
-  resolution: "@lfe/casket-star@npm:0.0.34::__archiveUrl=https%3A%2F%2Fgit.saikou.luogu.org.cn%2Fapi%2Fv4%2Fprojects%2F95%2Fpackages%2Fnpm%2F%40lfe%2Fcasket-star%2F-%2F%40lfe%2Fcasket-star-0.0.34.tgz"
+"@lfe/casket-star@npm:^0.0.35":
+  version: 0.0.35
+  resolution: "@lfe/casket-star@npm:0.0.35::__archiveUrl=https%3A%2F%2Fgit.saikou.luogu.org.cn%2Fapi%2Fv4%2Fprojects%2F95%2Fpackages%2Fnpm%2F%40lfe%2Fcasket-star%2F-%2F%40lfe%2Fcasket-star-0.0.35.tgz"
   dependencies:
     "@codemirror/lang-markdown": "npm:^6.0.0"
     "@codemirror/state": "npm:^6.0.0"
@@ -527,7 +527,7 @@ __metadata:
     vue: "npm:^3.0.0"
     vue-codemirror: "npm:^6.0.0"
     vue-tsc: "npm:^2.0.0"
-  checksum: 10c0/5a5d030df47b11248f710a0884392238a1a1a4539e853fbd581f5c15d9b9ba30dc59f623ff42c7ff0cd450cae4d303d8c5b21f8749d737b24d8b7db9465f8469
+  checksum: 10c0/4e2dc1e50e6d83d56d31f86f2cba5b5a5f5620ee7b13663ab454dca7e15c87ab96826f6b5632392325c48f027a1819e72984387a2dd2e28d83a6842122cd18a1
   languageName: node
   linkType: hard
 
@@ -1488,7 +1488,7 @@ __metadata:
     "@highlightjs/vue-plugin": "npm:^2.1.0"
     "@lezer/highlight": "npm:^1.2.0"
     "@lezer/markdown": "npm:^1.3.0"
-    "@lfe/casket-star": "npm:^0.0.34"
+    "@lfe/casket-star": "npm:^0.0.35"
     "@rushstack/eslint-patch": "npm:^1.10.3"
     "@tsconfig/node20": "npm:^20.1.4"
     "@types/hast": "npm:^3.0.4"
